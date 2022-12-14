@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot name="bipedalWalker">
+    <link name="waist">
+        <inertial>
+            <origin xyz="-1.286E-17 -0.0066341 0.024451" rpy="0 0 0"/>
+            <mass value="0.36416"/>
+            <inertia ixx="0.00112359552578825"
+        ixy="1.205946380074E-19"
+        ixz="1.11224090733735E-20"
+        iyy="0.00100247284891324"
+        iyz="0.000103236065171984"
+        izz="0.0019309628828681"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" 
+            rpy="1.5707963267949 0 0"/>
+            <geometry>
+            <mesh filename="package://walker_sim/meshes/waist_L.STL" />
+            </geometry>
+            <material name="black">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707963267949 0 0" />
+            <geometry>
+                <mesh filename="package://walker_sim/meshes/waist_L.STL" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <gazebo reference="waist">
+       <material>Gazebo/Red</material>
+    </gazebo>
+</robot>
+
