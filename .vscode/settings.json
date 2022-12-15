@@ -1,0 +1,26 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/ahoque245/ros2_ws/install/walker_sim/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/walker_ai/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/turtlesim/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/rl_biped/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/py_srvcli/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/machina_soln/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/machina_interfaces/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages",
+        "/home/ahoque245/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/ahoque245/ros2_ws/install/walker_sim/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/walker_ai/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/turtlesim/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/rl_biped/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/py_srvcli/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/machina_soln/lib/python3.8/site-packages",
+        "/home/ahoque245/ros2_ws/install/machina_interfaces/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages",
+        "/home/ahoque245/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}
