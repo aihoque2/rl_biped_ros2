@@ -14,7 +14,7 @@ from ament_index_python.packages import get_package_share_directory
 # Gazebo's service to spawn a robot
 from gazebo_msgs.srv import SpawnEntity
 
-def main():
+def main(args=None):
 
     """ Main for spawning a robot node """
     # Get input arguments from user

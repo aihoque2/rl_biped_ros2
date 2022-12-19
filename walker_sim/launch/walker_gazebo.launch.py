@@ -15,7 +15,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
-    pkg_box_car_gazebo = get_package_share_directory('walker_sim')
+    pkg_walker_sim = get_package_share_directory('walker_sim')
     
     urdf_tutorial_path = get_package_share_path('walker_sim')
     default_model_path = urdf_tutorial_path / 'robots/simple_walker.urdf'
@@ -31,5 +31,5 @@ def generate_launch_description():
     )    
 
     return LaunchDescription([
-        gazebo, 
+        gazebo,
     ])
