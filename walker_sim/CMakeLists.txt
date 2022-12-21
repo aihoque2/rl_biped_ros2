@@ -23,8 +23,12 @@ find_package(urdf REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY src launch robots
+  DIRECTORY src launch robots worlds media meshes config
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(FILES resource/walker_sim
+ DESTINATION share/ament_index/resource_index/packages/resource
 )
 
 if(BUILD_TESTING)
