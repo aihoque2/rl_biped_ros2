@@ -16,7 +16,7 @@ def generate_launch_description():
         robot_name), 'worlds', world_file_name)
 
     urdf = os.path.join(get_package_share_directory(
-        robot_name), 'robots', 'walker_fake.urdf')
+        robot_name), 'robots', 'simple_walker.urdf')
 
     xml = open(urdf, 'r').read()
 
