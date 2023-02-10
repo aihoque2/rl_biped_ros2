@@ -23,7 +23,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/waist_L.STL" />
+          filename="package://walker_sim/meshes/waist_L.STL" />
       </geometry>
       <material
         name="black">
@@ -37,7 +37,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/waist_L.STL" />
+          filename="package://walker_sim/meshes/waist_L.STL" />
       </geometry>
     </collision>
   </link>
@@ -72,7 +72,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/thigh.STL" />
+          filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
       <material
         name="">
@@ -86,7 +86,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/thigh.STL" />
+          filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
     </collision>
   </link>
@@ -121,7 +121,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/thigh.STL" />
+          filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
       <material
         name="">
@@ -135,7 +135,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/31mar/thigh.STL" />
+          filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
     </collision>
   </link>
@@ -162,7 +162,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/shank.STL" />
+          filename="package://walker_sim/meshes/shank.STL" />
       </geometry>
       <material
         name="">
@@ -176,7 +176,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/shank.STL" />
+          filename="package://walker_sim/meshes/shank.STL" />
       </geometry>
     </collision>
   </link>
@@ -211,7 +211,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/shank.STL" />
+          filename="package://walker_sim/meshes/shank.STL" />
       </geometry>
       <material
         name="">
@@ -225,7 +225,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/shank.STL" />
+          filename="package://walker_sim/meshes/shank.STL" />
       </geometry>
     </collision>
   </link>
@@ -260,7 +260,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/contact_sensor.STL" />
+          filename="package://walker_sim/meshes/contact_sensor.STL" />
       </geometry>
       <material
         name="">
@@ -274,7 +274,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/contact_sensor.STL" />
+          filename="package://walker_sim/meshes/contact_sensor.STL" />
       </geometry>
     </collision>
   </link>
@@ -307,7 +307,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/contact_sensor.STL" />
+          filename="package://walker_sim/meshes/contact_sensor.STL" />
       </geometry>
       <material
         name="">
@@ -321,7 +321,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/contact_sensor.STL" />
+          filename="package://walker_sim/meshes/contact_sensor.STL" />
       </geometry>
     </collision>
   </link>
@@ -362,7 +362,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/outter_ring.STL" />
+          filename="package://walker_sim/meshes/outter_ring.STL" />
       </geometry>
     </collision>
   </link>
@@ -398,7 +398,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/inner_ring.STL" />
+          filename="package://walker_sim/meshes/inner_ring.STL" />
       </geometry>
     </collision>
   </link>
@@ -432,7 +432,7 @@
         rpy="1.5707963267949 0 0" />
       <geometry>
         <mesh
-          filename="file://($find walker_sim)/meshes/boom_horizontal.STL" />
+          filename="package://walker_sim/meshes/boom_horizontal.STL" />
       </geometry>
     </collision>
   </link>

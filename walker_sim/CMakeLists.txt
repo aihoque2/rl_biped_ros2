@@ -23,7 +23,7 @@ find_package(urdf REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY src launch robots worlds media meshes config
+  DIRECTORY src launch robots worlds media rviz meshes config
   DESTINATION share/${PROJECT_NAME}
 )
 
