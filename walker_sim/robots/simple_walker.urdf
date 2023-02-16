@@ -28,7 +28,7 @@
       <material
         name="black">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="1.0 0.0 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -75,9 +75,9 @@
           filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
       <material
-        name="">
+        name="red">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.0 0.0 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -124,9 +124,9 @@
           filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
       <material
-        name="">
+        name="Blue">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.0 0.0 1.0 1.0" />
       </material>
     </visual>
     <collision>
@@ -167,7 +167,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.0 0.0 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -214,9 +214,9 @@
           filename="package://walker_sim/meshes/shank.STL" />
       </geometry>
       <material
-        name="">
+        name="blue">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.0 0.0 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -265,7 +265,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.0 0.0 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -310,9 +310,9 @@
           filename="package://walker_sim/meshes/contact_sensor.STL" />
       </geometry>
       <material
-        name="">
+        name="blue">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.0 0.0 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -437,6 +437,16 @@
     </collision>
   </link>
 
+  
+  <joint name="boom_waist" type="prismatic">
+    <origin xyz="0.725 0 0" rpy="0 0 0"></origin>
+    <parent link="boom"></parent>
+    <child link="waist"></child>
+    <axis xyz="0 0 1"></axis>
+    <limit effort="30" lower="-0.5" upper="0.5" velocity="7.0"></limit>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
   <gazebo reference="waist">
        <material>Gazebo/Turquoise</material>
     </gazebo>
@@ -463,14 +473,6 @@
        <material>Gazebo/Transparent</material>
     </gazebo>
 
-  <joint name="boom_waist" type="prismatic">
-    <origin xyz="0.725 0 0" rpy="0 0 0"></origin>
-    <parent link="boom"></parent>
-    <child link="waist"></child>
-    <axis xyz="0 0 1"></axis>
-    <limit effort="30" lower="-0.5" upper="0.5" velocity="7.0"></limit>
-    <dynamics damping="0.0" friction="0.0"/>
-  </joint>
 
   <gazebo>
   <plugin name="gazebo_ros2_control" filename="libgazebo_ros_control.so">
