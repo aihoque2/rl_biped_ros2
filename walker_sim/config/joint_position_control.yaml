@@ -1,36 +1,74 @@
-walker:
-  #Joint state controller
-  joint_state_controller:
-    type: joint_state_controller/JointStateController
-    publish_rate: 1000
+controller_manager:
+  ros_parameters:
+    update_rate: 1000 #..or publish_rate?
 
-  # Effort Controllers & Position Controllers
-  waist_thighR_position_controller:
-    type: effort_controllers/JointEffortController
-    joint: waist_thighR
-    pid: {p: 1, i: 0.001, d: 0.065}
+    joint_effort_controllers:
+      type: effort_controllers/JointEffortController
 
-  waist_thighL_position_controller:
-    type: effort_controllers/JointEffortController
-    joint: waist_thighL
-    pid: {p: 1, i: 0.001, d: 0.065}
+    joint_position_controllers:
+      type: effort_controllers/JointPositionController
 
-  thighR_shankR_position_controller:
-    type: effort_controllers/JointEffortController
-    joint: thighR_shankR
-    pid: {p: 1, i: 0.001, d: 0.065}
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+joint_effort_controllers:
+  ros_parameters:
+    joints:
+      - waist_thighR
+      - waist_thighL
+      - thighR_shankR
+      - thighL_shankL
     
-  thighL_shankL_position_controller:
-    type: effort_controllers/JointEffortController
-    joint: thighL_shankL
-    pid: {p: 1, i: 0.001, d: 0.065}
+    command_interfaces:
+      - effort
 
-  boom_waist_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: boom_waist
-    pid: {p: 1, i: 0.001, d: 0.065}
+    state_interfaces:
+      - position
+      - velocity
+      - effort
 
-  outer_ring_inner_ring_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: outer_ring_inner_ring
-    pid: {p: 1, i: 0.001, d: 0.065}
+    gains:
+      waist_thighR:
+        p: 1
+        i: 0.001
+        d: 0.065
+
+      waist_thighL:
+        p: 1
+        i: 0.001
+        d: 0.065
+
+      thighR_shankR:
+        p: 1
+        i: 0.001
+        d: 0.065
+
+      thighL_shankL:
+        p: 1
+        i: 0.001
+        d: 0.065
+
+joint_position_controllers:
+  ros_parameters:
+    joints:
+      - boom_waist
+      - outer_ring_inner_ring
+
+    command_interfaces:
+      - position
+      - velocity
+    
+    state_interfaces:
+      - position
+      - velocity
+
+    gains:
+      boom_waist:
+        p: 1
+        i: 0.001
+        d: 0.065
+
+      outer_ring_inner_ring:
+        p: 1
+        i: 0.001
+        d: 0.065
