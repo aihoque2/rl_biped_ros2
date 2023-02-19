@@ -437,7 +437,7 @@
     </collision>
   </link>
 
-  
+
   <joint name="boom_waist" type="prismatic">
     <origin xyz="0.725 0 0" rpy="0 0 0"></origin>
     <parent link="boom"></parent>
@@ -446,70 +446,6 @@
     <limit effort="30" lower="-0.5" upper="0.5" velocity="7.0"></limit>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
-
-  <gazebo reference="waist">
-       <material>Gazebo/Turquoise</material>
-    </gazebo>
-    <gazebo reference="thighR">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="thighL">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="shankR">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="shankL">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="footR">
-       <material>Gazebo/Black</material>
-    </gazebo>
-      <gazebo reference="footL">
-       <material>Gazebo/Black</material>
-    </gazebo>
-
-    <gazebo reference="boom">
-       <material>Gazebo/Transparent</material>
-    </gazebo>
-
-
-  <gazebo>
-  <plugin name="gazebo_ros2_control" filename="libgazebo_ros_control.so">
-    <robotNamespace>/walker</robotNamespace>
-  </plugin>
-  </gazebo>
-
-
-
-<gazebo reference="footR">
-  <sensor name="footR_contact_sensor" type="contact">
-    <always_on>true</always_on>
-    <update_rate>120.0</update_rate>
-    <contact>
-      <collision>footR_collision</collision>
-    </contact>
-    <plugin name="gazebo_ros_bumper_controller_1" filename="libgazebo_ros_bumper.so">
-      <bumperTopicName>/footR_contact_sensor_state</bumperTopicName>
-      <frameName>footR</frameName>
-      <robotNamespace>/walker</robotNamespace>
-    </plugin>
-  </sensor>
-</gazebo>
-  <gazebo reference="footL">
-  <sensor name="footL_contact_sensor" type="contact">
-    <always_on>true</always_on>
-    <update_rate>120.0</update_rate>
-    <contact>
-      <collision>footL_collision</collision>
-    </contact>
-    <plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
-      <bumperTopicName>/footL_contact_sensor_state</bumperTopicName>
-      <frameName>footL</frameName>
-      <robotNamespace>/walker</robotNamespace>
-    </plugin>
-  </sensor>
-</gazebo>
 
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
