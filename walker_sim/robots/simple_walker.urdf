@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <robot name="bipedal_walker">
   <link
     name="waist">
@@ -28,7 +27,7 @@
       <material
         name="black">
         <color
-          rgba="1.0 0.0 0.0 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -75,9 +74,9 @@
           filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
       <material
-        name="red">
+        name="">
         <color
-          rgba="0.0 0.0 1.0 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -167,7 +166,7 @@
       <material
         name="">
         <color
-          rgba="0.0 0.0 1.0 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -214,9 +213,9 @@
           filename="package://walker_sim/meshes/shank.STL" />
       </geometry>
       <material
-        name="blue">
+        name="">
         <color
-          rgba="0.0 0.0 1.0 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -265,7 +264,7 @@
       <material
         name="">
         <color
-          rgba="0.0 0.0 1.0 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -310,9 +309,9 @@
           filename="package://walker_sim/meshes/contact_sensor.STL" />
       </geometry>
       <material
-        name="blue">
+        name="">
         <color
-          rgba="0.0 0.0 1.0 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -512,7 +511,44 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+
+  <gazebo reference="waist">
+       <material>Gazebo/Turquoise</material>
+    </gazebo>
+    <gazebo reference="thighR">
+       <material>Gazebo/White</material>
+    </gazebo>
+      <gazebo reference="thighL">
+       <material>Gazebo/White</material>
+    </gazebo>
+      <gazebo reference="shankR">
+       <material>Gazebo/White</material>
+    </gazebo>
+      <gazebo reference="shankL">
+       <material>Gazebo/White</material>
+    </gazebo>
+      <gazebo reference="footR">
+       <material>Gazebo/Black</material>
+    </gazebo>
+      <gazebo reference="footL">
+       <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="boom">
+       <material>Gazebo/Transparent</material>
+    </gazebo>
+
+  <!-- <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(find walker_sim)/config/joint_position_control.yaml</parameters>
+    </plugin>
+  </gazebo> -->
   
   </robot>
+
+
+
+
+
 
 

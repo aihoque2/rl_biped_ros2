@@ -27,8 +27,10 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(FILES resource/walker_sim
- DESTINATION share/ament_index/resource_index/packages/resource
+install(
+  PROGRAMS
+  launch/walker_gazebo.launch.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
