@@ -2,16 +2,16 @@ controller_manager:
   ros_parameters:
     update_rate: 1000 #..or publish_rate?
 
-    joint_effort_controllers:
+    joint_effort_controller:
       type: effort_controllers/JointEffortController
 
-    joint_position_controllers:
+    joint_position_controller:
       type: effort_controllers/JointPositionController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-joint_effort_controllers:
+joint_effort_controller:
   ros_parameters:
     joints:
       - waist_thighR
@@ -48,7 +48,7 @@ joint_effort_controllers:
         i: 0.001
         d: 0.065
 
-joint_position_controllers:
+joint_position_controller:
   ros_parameters:
     joints:
       - boom_waist
@@ -56,7 +56,6 @@ joint_position_controllers:
 
     command_interfaces:
       - position
-      - velocity
     
     state_interfaces:
       - position
