@@ -1,5 +1,5 @@
 controller_manager:
-  ros_parameters:
+  ros__parameters:
     update_rate: 1000 #..or publish_rate?
 
     joint_effort_controller:
@@ -12,7 +12,7 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
 
 joint_effort_controller:
-  ros_parameters:
+  ros__parameters:
     joints:
       - waist_thighR
       - waist_thighL
@@ -49,7 +49,7 @@ joint_effort_controller:
         d: 0.065
 
 joint_position_controller:
-  ros_parameters:
+  ros__parameters:
     joints:
       - boom_waist
       - outer_ring_inner_ring

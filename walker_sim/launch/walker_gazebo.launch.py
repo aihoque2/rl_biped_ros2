@@ -3,8 +3,9 @@ import os
 
 from ament_index_python.packages import get_package_share_directory, get_package_share_path, get_package_prefix
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess, RegisterEventHandler
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.event_handlers import OnProcessExit
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
@@ -30,7 +31,6 @@ def generate_launch_description():
     else:
         os.environ['GAZEBO_PLUGIN_PATH'] = install_dir + '/lib'
 
-
     default_model_path = walker_sim_path / 'robots/simple_walker.urdf'
     model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path), description="absolute path to robot urdf file")
 
@@ -42,6 +42,17 @@ def generate_launch_description():
                                       executable='robot_state_publisher', 
                                        parameters=[params],
                                       output='screen')
+    
+    load_joint_state_broadcaster = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+             'joint_state_broadcaster'],
+        output='screen'
+    )
+
+    load_joint_effort_controller = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'effort_controllers'],
+        output='screen'
+    )
 
     # Gazebo launch
     gazebo = IncludeLaunchDescription(
@@ -60,6 +71,18 @@ def generate_launch_description():
                         output='screen')
 
     return LaunchDescription([
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=spawn_entity,
+                on_exit=[load_joint_state_broadcaster],
+            )
+        ),
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=load_joint_state_broadcaster,
+                on_exit=[load_joint_effort_controller],
+            )
+        ),
         gazebo,
         model_arg,
         robot_state_publisher_node,
