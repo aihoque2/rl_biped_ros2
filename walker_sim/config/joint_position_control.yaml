@@ -15,8 +15,8 @@ joint_effort_controller:
   ros__parameters:
     joints:
       - waist_thighR
-      - waist_thighL
       - thighR_shankR
+      - waist_thighL
       - thighL_shankL
     
     command_interfaces:
