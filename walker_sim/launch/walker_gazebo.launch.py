@@ -9,7 +9,7 @@ from launch.event_handlers import OnProcessExit
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
-
+from launch.conditions import UnlessCondition
 
 import xacro
 
@@ -43,6 +43,13 @@ def generate_launch_description():
                                        parameters=[params],
                                       output='screen')
     
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        condition=UnlessCondition(LaunchConfiguration('gui'))
+    )
+
     load_joint_state_broadcaster = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
              'joint_state_broadcaster'],
@@ -64,13 +71,15 @@ def generate_launch_description():
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'bipedal_walker',
-                                   '-x', '0.0',
+                                   '-x', '3.0',
                                    '-y', '0.0',
                                    '-z', '0.0',
                                    '-Y', '0.00'],
                         output='screen')
 
     return LaunchDescription([
+        DeclareLaunchArgument(name='gui', default_value='True',
+                                            description='Flag to enable joint_state_publisher_gui'),
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
@@ -85,6 +94,7 @@ def generate_launch_description():
         ),
         gazebo,
         model_arg,
+        joint_state_publisher_node,
         robot_state_publisher_node,
         spawn_entity
     ])

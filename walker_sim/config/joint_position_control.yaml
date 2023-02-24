@@ -3,10 +3,10 @@ controller_manager:
     update_rate: 1000 #..or publish_rate?
 
     joint_effort_controller:
-      type: effort_controllers/JointEffortController
+      type: effort_controllers/JointGroupEffortController
 
     joint_position_controller:
-      type: effort_controllers/JointPositionController
+      type: position_controllers/JointGroupPositionController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
