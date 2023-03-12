@@ -26,8 +26,10 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+ament_python_install_package(${PROJECT_NAME})
 install(PROGRAMS
-  src/control_biped_test.py
+  src/control_biped_test_node.py
+  src/reset_controls.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
