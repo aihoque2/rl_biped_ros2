@@ -34,6 +34,7 @@ if __name__ == '__main__':
 
     joint_publisher = JointPub()
     rclpy.spin(joint_publisher)
-
+    joint_publisher.position = "pos1"
+    rclpy.spin_once(joint_publisher)
     joint_publisher.destroy_node()
     rclpy.shutdown()
