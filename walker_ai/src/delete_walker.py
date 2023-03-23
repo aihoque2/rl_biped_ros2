@@ -2,7 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
-from gazebo_msgs.srv import DeleteEntity, SpawnEntity
+from gazebo_msgs.srv import DeleteEntity
 
 class DeleteWalker(Node):
     """
@@ -12,7 +12,7 @@ class DeleteWalker(Node):
         super().__init__("delete_walker_client")
         self.cli = self.create_client(DeleteEntity,"/delete_entity")
         self.req = DeleteEntity.Request()
-        self.req.name = "bipedal_walker"
+        self.req.name = "bipedal_walker" # TODO: where did you get this name?
 
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info("service not available, waiting again...")
