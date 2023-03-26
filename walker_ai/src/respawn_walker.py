@@ -1,27 +1,32 @@
 #!/usr/bin/env python3
 import os
 from ament_index_python.packages import get_package_share_directory
-import xml.etree.ElementTree as ET
 
 import rclpy
 from rclpy.node import Node
 from gazebo_msgs.srv import SpawnEntity
 
-contents = open("simple_walker.urdf").read()
-print(contents)
 
 class SpawnWalker(Node):
-    def __init__(self, robot_description):
+    def __init__(self):
         super().__init__("spawn_walker_client")
+        path = path = os.path.join(get_package_share_directory("walker_sim"), "robots", "simple_walker.urdf")
         self.cli = self.create_client(SpawnEntity, "/spawn_entity")
-        self.urdf = os.path.join
+        self.urdf = open(path).read()
         self.req = SpawnEntity.Request()
         self.req.name="bipedal_walker"
-        self.urdf = robot_description
+        self.req.xml = self.urdf
+    
+    def send_request(self):
+        future = self.cli.call_async(self.req)
+        rclpy.spin_until_future_complete(self, future)
+        return future.result() # future is like promise in js?
         
-        #TODO: get the parameter robot_publisher from node /robot_state_publisher
-
-if __name__ =="__main":
-    #contents = open("simple_walker.urdf").read() #TODO: RELATIVE PATHS? get_package_share_directory?
-    #print(contents)
-    pass
+if __name__ =="__main__":
+    rclpy.init()
+    respawn_node = SpawnWalker()
+    response = respawn_node.send_request()
+    respawn_node.get_logger().info("robot respawned!")
+    respawn_node.destroy_node()
+    rclpy.shutdown()
+        
