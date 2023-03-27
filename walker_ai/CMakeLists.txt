@@ -17,6 +17,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(gazebo_ros REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -32,6 +33,8 @@ install(PROGRAMS
   src/reset_controls.py
   src/delete_walker.py
   src/respawn_walker.py
+  src/reset_sim.py
+  src/reset_joints.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

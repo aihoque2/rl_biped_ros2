@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from controller_manager_msgs.srv import SwitchController
 from gazebo_msgs.srv import SpawnEntity, DeleteEntity
+from geometry_msgs.msg import Pose
 
 class ControllerResetClient(Node):
     def __init__(self):
@@ -17,7 +18,7 @@ class ControllerResetClient(Node):
         self.req.activate_controllers = activate_controllers
         self.req.deactivate_controllers = deactivate_controllers
         self.req.activate_asap = True
-        self.req.strictness=2 #BEST_EFFORT=1, STRICT=2
+        self.req.strictness=1 #BEST_EFFORT=1, STRICT=2
         self.future = self.cli.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
@@ -36,22 +37,22 @@ class ControllerResetClient(Node):
         if deactivate_ok:
             activate_ok = self.send_request(activate_controllers=controller_arr, deactivate_controllers=[])
             if activate_ok:
-                self.get_logger().debug("controllers reset!")
+                self.get_logger().info("controllers reset!")
                 result = True
             else:
-                self.get_logger().debug("activate ok ==> " + str(activate_ok))
+                self.get_logger().info("activate ok ==> " + str(activate_ok))
         else:
-            self.get_logger().debug("DEactivate_ok ==> " + str(deactivate_ok))
+            self.get_logger().info("DEactivate_ok ==> " + str(deactivate_ok))
 
         return result
     
 
 if __name__ == "__main__":
     rclpy.init()
-    reset_client = ControllerResetClient()
-    response = reset_client.reset_controls()
-    reset_client.get_logger().info("controllers reset!")
-    reset_client.destroy_node()
+    reset_controls = ControllerResetClient()
+    response = reset_controls.reset_controls()
+    reset_controls.get_logger().info("controllers reset!")
+    reset_controls.destroy_node()
     rclpy.shutdown()
 
 
