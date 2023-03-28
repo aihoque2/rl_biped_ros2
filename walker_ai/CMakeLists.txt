@@ -16,11 +16,18 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
+find_package(rclcpp REQUIRED)
+find_package(controller_manager_msgs REQUIRED)
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(control_msgs REQUIRED)
 find_package(gazebo_ros REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+add_executable(reset_controls_cpp src/reset_controls.cpp)
+ament_target_dependencies(reset_controls_cpp rclcpp controller_manager_msgs)
 
 install(
   DIRECTORY src launch 

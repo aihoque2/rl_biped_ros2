@@ -5,15 +5,13 @@ from rclpy.node import Node
 from rclpy.qos import qos_profile_services_default
 
 from controller_manager_msgs.srv import SwitchController
-from gazebo_msgs.srv import SpawnEntity, DeleteEntity
-from geometry_msgs.msg import Pose
 from builtin_interfaces.msg import Duration
 
 class ControllerResetClient(Node):
     def __init__(self):
         super().__init__("controller_reset")
         self.get_logger().info("creating client...")
-        self.cli = self.create_client(SwitchController, "/controller_manager/switch_controller", qos_profile=qos_profile_services_default)
+        self.cli = self.create_client(SwitchController, "/controller_manager/switch_controller")
         while not self.cli.wait_for_service():
             self.get_logger().info("service not available, waiting again...")
         self.req = SwitchController.Request()
@@ -22,10 +20,11 @@ class ControllerResetClient(Node):
         self.req.activate_controllers = activate_controllers
         self.req.deactivate_controllers = deactivate_controllers
         self.req.activate_asap = True
-        self.req.strictness=2 #BEST_EFFORT=1, STRICT=2
-        self.future = self.cli.call_async(self.req)
+        self.req.strictness=1 #BEST_EFFORT=1, STRICT=2
         self.req.timeout=Duration()
-        self.req.timeout.sec = 10
+        self.req.timeout.nanosec = 10
+
+        self.future = self.cli.call(self.req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
 
