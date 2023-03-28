@@ -13,8 +13,6 @@ from std_msgs.msg import Float64MultiArray
 from std_srvs.srv import Empty
 from controller_manager_msgs.srv import SwitchController
 
-
-
 class JointPub(Node):
     
     def __init__(self):
@@ -41,12 +39,6 @@ class JointPub(Node):
         msg.data = array('d', self.pos)
         self.pub.publish(msg)
     
-    def publish_once(self):
-        msg = Float64MultiArray()
-        msg.data = array('d', self.pos)
-        self.pub.publish(msg)
-        rclpy.spin_once(self)
-
 if __name__ == '__main__':
     rclpy.init()
 
