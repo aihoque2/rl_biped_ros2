@@ -123,9 +123,9 @@
           filename="package://walker_sim/meshes/thigh.STL" />
       </geometry>
       <material
-        name="Blue">
+        name="gray">
         <color
-          rgba="0.0 0.0 1.0 1.0" />
+          rgba="1.0 1.0 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -331,6 +331,8 @@
     <child link="footL"></child>
   </joint>
 
+<link name="world"/>
+
  <joint name="grounding" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"></origin>
     <parent link="world"/>
@@ -434,96 +436,15 @@
     </collision>
   </link>
 
-  <gazebo reference="waist">
-       <material>Gazebo/Turquoise</material>
-    </gazebo>
-    <gazebo reference="thighR">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="thighL">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="shankR">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="shankL">
-       <material>Gazebo/White</material>
-    </gazebo>
-      <gazebo reference="footR">
-       <material>Gazebo/Black</material>
-    </gazebo>
-      <gazebo reference="footL">
-       <material>Gazebo/Black</material>
-    </gazebo>
+  <joint name="boom_waist" type="prismatic">
+    <origin xyz="0.725 0 0" rpy="0 0 0"></origin>
+    <parent link="boom"></parent>
+    <child link="waist"></child>
+    <axis xyz="0 0 1"></axis>
+    <limit effort="30" lower="-0.5" upper="0.5" velocity="7.0"></limit>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
 
-    <gazebo reference="boom">
-       <material>Gazebo/Transparent</material>
-    </gazebo>
+
   
-  <transmission name="tran1">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="waist_thighR">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor1">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran2">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="waist_thighL">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor2">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran3">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="thighR_shankR">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor3">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran4">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="thighL_shankL">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor4">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran5">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="boom_waist">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor5">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran7">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="outer_ring_inner_ring">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor7">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
   </robot>

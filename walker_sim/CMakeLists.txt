@@ -31,11 +31,11 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(
-  PROGRAMS
-  launch/walker_gazebo.launch.py
-  DESTINATION lib/${PROJECT_NAME}
-)
+# install(
+#  PROGRAMS
+#  launch/walker_gazebo.launch.py
+#  DESTINATION lib/${PROJECT_NAME}
+# )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

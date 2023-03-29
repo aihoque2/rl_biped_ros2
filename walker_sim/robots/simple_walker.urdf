@@ -331,6 +331,8 @@
     <child link="footL"></child>
   </joint>
 
+  <link name="world"/>
+
  <joint name="grounding" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"></origin>
     <parent link="world"/>
