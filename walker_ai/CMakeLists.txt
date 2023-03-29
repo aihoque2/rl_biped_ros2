@@ -34,7 +34,14 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
-#ament_python_install_package(${PROJECT_NAME})
+# C++ install
+install(TARGETS
+  reset_controls_cpp
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# ament_python_install_package(${PROJECT_NAME})
+# python install
 install(PROGRAMS
   src/control_biped_test_node.py
   src/reset_controls.py

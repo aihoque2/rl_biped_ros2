@@ -25,6 +25,7 @@ class ControllerResetClient : public rclcpp::Node{
                 RCLCPP_INFO(this->get_logger(), "service not available, waiting again...");
             }
             request = std::make_shared<controller_manager_msgs::srv::SwitchController::Request>();
+            request->strictness = 2;
         }
         bool send_request(std::vector<std::string> activate_controllers, std::vector<std::string> deactivate_controllers){
             request->activate_controllers = activate_controllers;
@@ -35,7 +36,7 @@ class ControllerResetClient : public rclcpp::Node{
         }
 
         bool reset_controls(){
-            RCLCPP_INFO(this->get_logger(), "restetting controls");
+            RCLCPP_INFO(this->get_logger(), "resetting controls");
             bool result = false;
             bool deactivateOk = send_request({}, controller_arr);
             if (deactivateOk){
@@ -57,6 +58,7 @@ int main(int argc, char * argv[])
 {
     rclcpp::init(argc, argv);
     std::shared_ptr<ControllerResetClient> node = std::make_shared<ControllerResetClient>();
+    node->reset_controls();
     rclcpp::shutdown();
     return 0;
 }
