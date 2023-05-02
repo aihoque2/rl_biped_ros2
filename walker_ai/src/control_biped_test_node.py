@@ -40,8 +40,11 @@ if __name__ == '__main__':
     rclpy.init()
 
     joint_publisher = JointPub()
-    rclpy.spin(joint_publisher)
-    joint_publisher.position = "pos1"
+    i = 0
+    while (i < 10):
+        rclpy.spin_once(joint_publisher)
+        i+=1
+    joint_publisher.position = "pos2"
     rclpy.spin_once(joint_publisher)
     joint_publisher.destroy_node()
     

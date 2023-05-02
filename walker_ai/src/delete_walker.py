@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from gazebo_msgs.srv import DeleteEntity
 
+
 class DeleteWalker(Node):
     """
     client node

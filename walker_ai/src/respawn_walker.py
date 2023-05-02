@@ -26,7 +26,7 @@ class SpawnWalker(Node):
 if __name__ =="__main__":
     rclpy.init()
     respawn_node = SpawnWalker()
-    response = respawn_node.send_request()
+    response = respawn_node.spawn_walker()
     respawn_node.get_logger().info("robot respawned!")
     respawn_node.destroy_node()
     rclpy.shutdown()

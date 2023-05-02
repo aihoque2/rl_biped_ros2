@@ -21,6 +21,7 @@ find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(urdf REQUIRED)
 find_package(xacro REQUIRED)
+find_package(control_msgs REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.

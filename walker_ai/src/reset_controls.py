@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_services_default
 
+
 from controller_manager_msgs.srv import SwitchController
 from builtin_interfaces.msg import Duration
 
@@ -20,7 +21,7 @@ class ControllerResetClient(Node):
         self.req.activate_controllers = activate_controllers
         self.req.deactivate_controllers = deactivate_controllers
         self.req.activate_asap = True
-        self.req.strictness=1 #BEST_EFFORT=1, STRICT=2
+        self.req.strictness=2 #BEST_EFFORT=1, STRICT=2
         self.req.timeout=Duration()
         self.req.timeout.nanosec = 10
 
