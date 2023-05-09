@@ -46,9 +46,10 @@ install(PROGRAMS
   src/control_biped_test_node.py
   src/reset_controls.py
   src/delete_walker.py
-  src/respawn_walker.py
   src/reset_sim.py
   src/reset_joints.py
+  src/simple_pub.py
+  src/simple_sub.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

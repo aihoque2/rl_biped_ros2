@@ -31,12 +31,22 @@ install(
   DIRECTORY src launch robots worlds media rviz meshes config
   DESTINATION share/${PROJECT_NAME}
 )
+install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME}
+)
 
 # install(
 #  PROGRAMS
 #  launch/walker_gazebo.launch.py
 #  DESTINATION lib/${PROJECT_NAME}
 # )
+
+# python install
+install(PROGRAMS
+  src/respawn_walker.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
