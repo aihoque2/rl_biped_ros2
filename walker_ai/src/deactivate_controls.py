@@ -10,7 +10,7 @@ from builtin_interfaces.msg import Duration
 
 class ControllerDeactivateClient(Node):
     def __init__(self):
-        super().__init__("controller_reset")
+        super().__init__("deactivate_controller")
         self.get_logger().info("creating client...")
         self.cli = self.create_client(SwitchController, "/controller_manager/switch_controller")
         while not self.cli.wait_for_service():
@@ -30,8 +30,8 @@ class ControllerDeactivateClient(Node):
         return self.future.result()
 
     def deactivate_controls(self):
-        # reset controls from deactivation to activation
-        self.get_logger().info("resetting controls...")
+        # deactivate controls with the client
+        self.get_logger().info("deactivating controls...")
 
         controller_arr = ["joint_effort_controller", "joint_state_broadcaster"]
         deactivate_ok = self.send_request(activate_controllers=[], deactivate_controllers=controller_arr)
@@ -41,9 +41,9 @@ class ControllerDeactivateClient(Node):
 if __name__ == "__main__":
     rclpy.init()
     deatctivate_controls = ControllerDeactivateClient()
-    deatctivate_controls.get_logger().info("deatctivate_controls client created!")
+    deatctivate_controls.get_logger().info("deactivate_controls client created!")
     response = deatctivate_controls.deactivate_controls()
-    deatctivate_controls.get_logger().info("controllers reset!")
+    deatctivate_controls.get_logger().info("controllers deactivated!")
     deatctivate_controls.get_logger().info("here's strictness: "+str(deatctivate_controls.req.strictness))
     deatctivate_controls.destroy_node()
     rclpy.shutdown()

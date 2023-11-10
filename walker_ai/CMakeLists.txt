@@ -50,6 +50,8 @@ install(TARGETS
 install(PROGRAMS
   src/control_biped_test_node.py
   src/reset_controls.py
+  src/deactivate_controls.py
+  src/activate_controls.py
   src/delete_walker.py
   src/reset_sim.py
   src/reset_joints.py
