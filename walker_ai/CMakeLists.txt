@@ -21,6 +21,7 @@ find_package(controller_manager_msgs REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(control_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(gazebo_ros REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -28,6 +29,9 @@ find_package(gazebo_ros REQUIRED)
 
 add_executable(reset_controls_cpp src/reset_controls.cpp)
 ament_target_dependencies(reset_controls_cpp rclcpp controller_manager_msgs)
+
+add_executable(control_biped_cpp src/control_biped.cpp)
+ament_target_dependencies(control_biped_cpp rclcpp std_msgs)
 
 install(
   DIRECTORY src launch 
@@ -37,6 +41,7 @@ install(
 # C++ install
 install(TARGETS
   reset_controls_cpp
+  control_biped_cpp
   DESTINATION lib/${PROJECT_NAME}
 )
 
