@@ -24,7 +24,7 @@ class ControllerActivateClient(Node):
         self.req.activate_asap = True
         self.req.strictness=2 #BEST_EFFORT=1, STRICT=2
         self.req.timeout=Duration()
-        self.req.timeout.nanosec = 10
+        self.req.timeout.sec=5
 
         self.future = self.cli.call(self.req)
         rclpy.spin_until_future_complete(self, self.future)

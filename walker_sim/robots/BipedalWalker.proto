@@ -1,0 +1,447 @@
+#VRML_SIM R2023b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the BipedalWalker
+# Extracted from: /home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/robots/barebones.urdf
+
+PROTO BipedalWalker [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "BipedalWalker"  # Is `Robot.name`.
+  field  SFString    controller      "void"           # Is `Robot.controller`.
+  field  MFString    controllerArgs  []               # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""               # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE            # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE             # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE            # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Solid {
+        children [
+          SliderJoint {
+            jointParameters JointParameters {
+              axis 0.000000 -1.000000 0.000000
+            }
+            device [
+              LinearMotor {
+                name "outer_ring_inner_ring"
+                maxVelocity 7.0
+                maxPosition 10.0
+                maxForce 30.0
+              }
+              PositionSensor {
+                name "outer_ring_inner_ring_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.000000 0.000000 0.330000
+              children [
+                Solid {
+                  translation 0.000000 0.000000 0.080000
+                  children [
+                    SliderJoint {
+                      jointParameters JointParameters {
+                        axis 0.000000 0.000000 1.000000
+                      }
+                      device [
+                        LinearMotor {
+                          name "boom_waist"
+                          maxVelocity 7.0
+                          minPosition -0.5
+                          maxPosition 0.5
+                          maxForce 30.0
+                        }
+                        PositionSensor {
+                          name "boom_waist_sensor"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0.725000 0.000000 0.000000
+                        children [
+                          Pose {
+                            rotation 1.000000 0.000000 0.000000 1.570796
+                            children [
+                              Shape {
+                                appearance DEF black PBRAppearance {
+                                  baseColor 0.792160 0.819610 0.933330
+                                  roughness 1.000000
+                                  metalness 0
+                                }
+                                geometry DEF waist_L Mesh {
+                                  url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/waist_L.STL"
+                                }
+                              }
+                            ]
+                          }
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              anchor -0.077500 0.000000 0.000000
+                            }
+                            device [
+                              RotationalMotor {
+                                name "waist_thighR"
+                                maxVelocity 7.0
+                                minPosition -0.8
+                                maxPosition 0.8
+                                maxTorque 30.0
+                              }
+                              PositionSensor {
+                                name "waist_thighR_sensor"
+                              }
+                            ]
+                            endPoint Solid {
+                              translation -0.077500 0.000000 0.000000
+                              children [
+                                Pose {
+                                  rotation 1.000000 0.000000 0.000000 1.570796
+                                  children [
+                                    Shape {
+                                      appearance DEF thighR_material PBRAppearance {
+                                        baseColor 0.792160 0.819610 0.933330
+                                        roughness 1.000000
+                                        metalness 0
+                                      }
+                                      geometry DEF thigh Mesh {
+                                        url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/thigh.STL"
+                                      }
+                                    }
+                                  ]
+                                }
+                                HingeJoint {
+                                  jointParameters HingeJointParameters {
+                                    anchor 0.000000 0.000000 -0.190000
+                                  }
+                                  device [
+                                    RotationalMotor {
+                                      name "thighR_shankR"
+                                      maxVelocity 7.0
+                                      minPosition -0.00118981
+                                      maxPosition 1.4
+                                      maxTorque 30.0
+                                    }
+                                    PositionSensor {
+                                      name "thighR_shankR_sensor"
+                                    }
+                                  ]
+                                  endPoint Solid {
+                                    translation 0.000000 0.000000 -0.190000
+                                    children [
+                                      Pose {
+                                        rotation 1.000000 0.000000 0.000000 1.570796
+                                        children [
+                                          Shape {
+                                            appearance DEF shankR_material PBRAppearance {
+                                              baseColor 0.792160 0.819610 0.933330
+                                              roughness 1.000000
+                                              metalness 0
+                                            }
+                                            geometry DEF shank Mesh {
+                                              url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/shank.STL"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                      Solid {
+                                        translation 0.000000 0.000000 -0.175000
+                                        children [
+                                          Pose {
+                                            rotation 1.000000 0.000000 0.000000 1.570796
+                                            children [
+                                              Shape {
+                                                appearance DEF footR_material PBRAppearance {
+                                                  baseColor 0.792160 0.819610 0.933330
+                                                  roughness 1.000000
+                                                  metalness 0
+                                                }
+                                                geometry DEF contact_sensor Mesh {
+                                                  url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/contact_sensor.STL"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                        name "footR"
+                                        boundingObject Pose {
+                                          rotation 1.000000 0.000000 0.000000 1.570796
+                                          children [
+                                            USE contact_sensor
+                                          ]
+                                        }
+                                        physics Physics {
+                                          density -1
+                                          mass 0.009817
+                                          centerOfMass [ 0.000000 -0.000000 -0.010000 ]
+                                          inertiaMatrix [
+                                            7.107444e-07 7.107444e-07 7.669904e-07
+                                            -1.429248e-39 2.371495e-39 3.443958e-24
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                    name "shankR"
+                                    boundingObject Pose {
+                                      rotation 1.000000 0.000000 0.000000 1.570796
+                                      children [
+                                        USE shank
+                                      ]
+                                    }
+                                    physics Physics {
+                                      density -1
+                                      mass 0.069508
+                                      centerOfMass [ -0.000000 -0.000000 -0.087546 ]
+                                      inertiaMatrix [
+                                        2.469867e-04 2.471518e-04 4.583987e-06
+                                        6.483794e-13 1.718979e-10 -1.006612e-09
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                              name "thighR"
+                              boundingObject Pose {
+                                rotation 1.000000 0.000000 0.000000 1.570796
+                                children [
+                                  USE thigh
+                                ]
+                              }
+                              physics Physics {
+                                density -1
+                                mass 0.045155
+                                centerOfMass [ 0.000071 -0.000000 -0.095855 ]
+                                inertiaMatrix [
+                                  1.602990e-04 1.610345e-04 5.917312e-06
+                                  2.815022e-13 8.019305e-08 -1.203719e-13
+                                ]
+                              }
+                            }
+                          }
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              anchor 0.077500 0.000000 0.000000
+                            }
+                            device [
+                              RotationalMotor {
+                                name "waist_thighL"
+                                maxVelocity 7.0
+                                minPosition -0.8
+                                maxPosition 0.8
+                                maxTorque 30.0
+                              }
+                              PositionSensor {
+                                name "waist_thighL_sensor"
+                              }
+                            ]
+                            endPoint Solid {
+                              translation 0.077500 0.000000 0.000000
+                              children [
+                                Pose {
+                                  rotation 1.000000 0.000000 0.000000 1.570796
+                                  children [
+                                    Shape {
+                                      appearance DEF gray PBRAppearance {
+                                        baseColor 1.000000 1.000000 0.000000
+                                        roughness 1.000000
+                                        metalness 0
+                                      }
+                                      geometry USE thigh
+                                    }
+                                  ]
+                                }
+                                HingeJoint {
+                                  jointParameters HingeJointParameters {
+                                    anchor 0.000000 0.000000 -0.190000
+                                  }
+                                  device [
+                                    RotationalMotor {
+                                      name "thighL_shankL"
+                                      maxVelocity 7.0
+                                      minPosition -0.00118981
+                                      maxPosition 1.4
+                                      maxTorque 30.0
+                                    }
+                                    PositionSensor {
+                                      name "thighL_shankL_sensor"
+                                    }
+                                  ]
+                                  endPoint Solid {
+                                    translation 0.000000 0.000000 -0.190000
+                                    children [
+                                      Pose {
+                                        rotation 1.000000 0.000000 0.000000 1.570796
+                                        children [
+                                          Shape {
+                                            appearance DEF shankL_material PBRAppearance {
+                                              baseColor 0.792160 0.819610 0.933330
+                                              roughness 1.000000
+                                              metalness 0
+                                            }
+                                            geometry USE shank
+                                          }
+                                        ]
+                                      }
+                                      Solid {
+                                        translation 0.000000 0.000000 -0.175000
+                                        children [
+                                          Pose {
+                                            rotation 1.000000 0.000000 0.000000 1.570796
+                                            children [
+                                              Shape {
+                                                appearance DEF footL_material PBRAppearance {
+                                                  baseColor 0.792160 0.819610 0.933330
+                                                  roughness 1.000000
+                                                  metalness 0
+                                                }
+                                                geometry USE contact_sensor
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                        name "footL"
+                                        boundingObject Pose {
+                                          rotation 1.000000 0.000000 0.000000 1.570796
+                                          children [
+                                            USE contact_sensor
+                                          ]
+                                        }
+                                        physics Physics {
+                                          density -1
+                                          mass 0.009817
+                                          centerOfMass [ 0.000000 -0.000000 -0.010000 ]
+                                          inertiaMatrix [
+                                            7.107444e-07 7.107444e-07 7.669904e-07
+                                            -1.429248e-39 2.371495e-39 3.443958e-24
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                    name "shankL"
+                                    boundingObject Pose {
+                                      rotation 1.000000 0.000000 0.000000 1.570796
+                                      children [
+                                        USE shank
+                                      ]
+                                    }
+                                    physics Physics {
+                                      density -1
+                                      mass 0.069508
+                                      centerOfMass [ -0.000000 -0.000000 -0.087546 ]
+                                      inertiaMatrix [
+                                        2.469867e-04 2.471518e-04 4.583987e-06
+                                        6.483794e-13 1.718979e-10 -1.006612e-09
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                              name "thighL"
+                              boundingObject Pose {
+                                rotation 1.000000 0.000000 0.000000 1.570796
+                                children [
+                                  USE thigh
+                                ]
+                              }
+                              physics Physics {
+                                density -1
+                                mass 0.045155
+                                centerOfMass [ 0.000071 -0.000000 -0.095855 ]
+                                inertiaMatrix [
+                                  1.602990e-04 1.610345e-04 5.917312e-06
+                                  2.815022e-13 8.019305e-08 -1.203719e-13
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                        name "waist"
+                        boundingObject Pose {
+                          rotation 1.000000 0.000000 0.000000 1.570796
+                          children [
+                            USE waist_L
+                          ]
+                        }
+                        physics Physics {
+                          density -1
+                          mass 0.364160
+                          centerOfMass [ -0.000000 -0.006634 0.024451 ]
+                          inertiaMatrix [
+                            1.123596e-03 1.002473e-03 1.930963e-03
+                            1.205946e-19 1.112241e-20 1.032361e-04
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                  name "boom"
+                  boundingObject Pose {
+                    rotation 1.000000 0.000000 0.000000 1.570796
+                    children [
+                      DEF boom_horizontal Mesh {
+                        url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/boom_horizontal.STL"
+                      }
+                    ]
+                  }
+                  physics Physics {
+                    density -1
+                    mass 0.188090
+                    centerOfMass [ 0.333560 0.000000 0.024218 ]
+                    inertiaMatrix [
+                      1.072577e-05 8.924245e-03 8.922129e-03
+                      -1.108235e-19 4.905447e-05 -8.280574e-22
+                    ]
+                  }
+                }
+              ]
+              name "inner_ring"
+              boundingObject Pose {
+                rotation 1.000000 0.000000 0.000000 1.570796
+                children [
+                  DEF inner_ring Mesh {
+                    url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/inner_ring.STL"
+                  }
+                ]
+              }
+              physics Physics {
+                density -1
+                mass 0.415920
+                centerOfMass [ 0.000000 0.000000 0.032744 ]
+                inertiaMatrix [
+                  3.593156e-04 3.592740e-04 4.187482e-04
+                  -5.511871e-24 3.133472e-23 8.283680e-21
+                ]
+              }
+            }
+          }
+        ]
+        name "outer_ring"
+        boundingObject Pose {
+          rotation 1.000000 0.000000 0.000000 1.570796
+          children [
+            DEF outter_ring Mesh {
+              url "/home/ahoque245/workspaces/ros2_ws/src/rl_biped_ros2/walker_sim/meshes/outter_ring.STL"
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.492440
+          centerOfMass [ 0.000000 0.000000 0.165000 ]
+          inertiaMatrix [
+            5.026013e-03 5.026013e-03 1.114156e-03
+            -1.623587e-35 7.479089e-35 -2.395243e-19
+          ]
+        }
+      }
+    ]
+    name IS name
+  }
+}

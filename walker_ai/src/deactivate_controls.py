@@ -23,11 +23,20 @@ class ControllerDeactivateClient(Node):
         self.req.activate_asap = True
         self.req.strictness=2 # BEST_EFFORT=1, STRICT=2
         self.req.timeout=Duration()
-        self.req.timeout.nanosec = 10
+        self.req.timeout.sec=5
 
         self.future = self.cli.call(self.req)
         rclpy.spin_until_future_complete(self, self.future)
-        return self.future.result()
+        while rclpy.ok():
+            rclpy.spin_once(self)
+            if self.future.done():
+                try:
+                    response = self.future.result()
+                except Exception as e:
+                    self.get_logger().error('Deactivate Controls Service call failed %r' % (e,))
+                else:
+                    return response
+                break
 
     def deactivate_controls(self):
         # deactivate controls with the client
